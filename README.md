@@ -42,11 +42,27 @@ Reaper reads your **entire project at once** and cross-references every definiti
 
 ## ⚡ Quickstart
 
+### Install pre-built binary (recommended)
+
+Pre-built binaries are published on every version bump to [GitHub Releases](https://github.com/taradepan/reaper/releases).
+
+**Linux / macOS (single command):**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/taradepan/reaper/main/install.sh | sh
+```
+
+**Windows (PowerShell):**
+
+```powershell
+irm https://raw.githubusercontent.com/taradepan/reaper/main/install.ps1 | iex
+```
+
 ### Install from source
 
 ```bash
 # Clone and build
-git clone https://github.com/YOUR_USERNAME/reaper.git
+git clone https://github.com/taradepan/reaper.git
 cd reaper
 cargo build --release
 
@@ -385,7 +401,31 @@ These are **always** skipped — you never need to list them manually:
 
 ## 🤖 CI Integration
 
-### GitHub Actions
+### GitHub Actions (pre-built binary — fast ⚡)
+
+No Rust toolchain needed. Downloads the pre-built binary from GitHub Releases in ~2 seconds.
+
+```yaml
+name: Dead Code Check
+
+on: [push, pull_request]
+
+jobs:
+  reaper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Reaper
+        run: curl -fsSL https://raw.githubusercontent.com/taradepan/reaper/main/install.sh | sh
+
+      - name: Find dead code
+        run: reaper --exclude tests .
+```
+
+### GitHub Actions (build from source)
+
+If you prefer to always build from the latest commit:
 
 ```yaml
 name: Dead Code Check
@@ -402,7 +442,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Install Reaper
-        run: cargo install --git https://github.com/YOUR_USERNAME/reaper.git
+        run: cargo install --git https://github.com/taradepan/reaper.git
 
       - name: Find dead code
         run: reaper --exclude tests .
