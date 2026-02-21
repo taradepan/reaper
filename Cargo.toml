@@ -2,6 +2,14 @@
 name = "reaper"
 version = "0.1.0"
 edition = "2024"
+authors = ["Taradepan R"]
+description = "A fast, cross-file Python dead-code finder written in Rust"
+license = "MIT"
+repository = "https://github.com/taradepan/reaper"
+homepage = "https://github.com/taradepan/reaper"
+readme = "README.md"
+keywords = ["python", "dead-code", "linter", "static-analysis", "cli"]
+categories = ["command-line-utilities", "development-tools::testing"]
 
 [[bin]]
 name = "reaper"
