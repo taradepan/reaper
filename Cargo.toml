@@ -1,6 +1,6 @@
 [package]
 name = "reaper-py"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 authors = ["Taradepan R"]
 description = "A fast, cross-file Python dead-code finder written in Rust"
