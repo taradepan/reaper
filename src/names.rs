@@ -592,8 +592,6 @@ mod tests {
         out
     }
 
-
-
     #[test]
     fn test_simple_name_usage() {
         let u = usages("x = foo\n");
