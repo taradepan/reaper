@@ -1747,11 +1747,11 @@ mod tests {
     #[test]
     fn test_walrus_target_collected() {
         let s = stmts("def f():\n    x = (n := foo())\n");
-        if let StmtKind::FunctionDef(f) = &s[0].kind {
-            if let StmtKind::Assign { value, .. } = &f.body[0].kind {
-                let walrus: Vec<&str> = value.walrus.iter().map(|(n, _)| *n).collect();
-                assert!(walrus.contains(&"n"), "walrus target `n` not found");
-            }
+        if let StmtKind::FunctionDef(f) = &s[0].kind
+            && let StmtKind::Assign { value, .. } = &f.body[0].kind
+        {
+            let walrus: Vec<&str> = value.walrus.iter().map(|(n, _)| *n).collect();
+            assert!(walrus.contains(&"n"), "walrus target `n` not found");
         }
     }
 

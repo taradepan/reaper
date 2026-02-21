@@ -592,13 +592,7 @@ mod tests {
         out
     }
 
-    fn assigns_and_usages(src: &str) -> (HashMap<String, usize>, HashSet<String>) {
-        let stmts = parse(src);
-        let mut a = HashMap::new();
-        let mut u = HashSet::new();
-        collect_assigns_and_usages(&stmts, &mut a, &mut u);
-        (a, u)
-    }
+
 
     #[test]
     fn test_simple_name_usage() {

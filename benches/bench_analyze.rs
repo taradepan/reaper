@@ -83,7 +83,7 @@ fn bench_analyze(c: &mut Criterion) {
 
     c.bench_function("analyze_files_single_large_file", |b| {
         b.iter(|| {
-            let diags = analyze_files(black_box(&[big_path.clone()])).unwrap();
+            let diags = analyze_files(black_box(std::slice::from_ref(&big_path))).unwrap();
             black_box(diags);
         });
     });

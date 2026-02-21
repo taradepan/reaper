@@ -1063,8 +1063,8 @@ mod tests {
         let src = "if True:\n    x = 1\n";
         let toks = tokens(src);
         // Should contain: KwIf True : Newline Indent Name Eq Number Newline Dedent Eof
-        assert!(toks.iter().any(|t| *t == Token::Indent));
-        assert!(toks.iter().any(|t| *t == Token::Dedent));
+        assert!(toks.contains(&Token::Indent));
+        assert!(toks.contains(&Token::Dedent));
     }
 
     #[test]
